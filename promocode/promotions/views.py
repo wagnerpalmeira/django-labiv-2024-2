@@ -18,3 +18,11 @@ def promotions_list(request):
         'promotions': promotions,
     }
     return render(request, 'promotions/index.html', context)
+
+
+# PATH PARAM
+def promotion_detail(request, pk):
+    promotion = promotions[pk-1]
+    return render(request, 'promotions/detail.html', {
+        'promotion': promotion
+    })

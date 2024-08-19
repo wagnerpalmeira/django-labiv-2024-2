@@ -1,65 +1,24 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promocode</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <main class="pt-5">
-        <div class="container">
-            <div class="row">
-                {% for promotion in promotions %}
-                <div class="col-12 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{promotion.title}}</h5>
-                            <p class="card-text">
-                                <h1>
-                                    {{promotion.price}} R$
-                                </h1>
-                            </p>
-                            <a href="{{promotion.url}}" class="card-link" target="_blank">Ver Mais</a>
-                        </div>
-                    </div>
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for promotion in promotions %}
+        <div class="col-12 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{promotion.title}}</h5>
+                    <p class="card-text">
+                        <h1>
+                            {{promotion.price}} R$
+                        </h1>
+                    </p>
+                    <a href="#" class="card-link" target="_blank">Detalhes</a>
+                    <a href="{{promotion.url}}" class="card-link" target="_blank">Acessar Promoção</a>
                 </div>
-                {% endfor %}
             </div>
         </div>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
