@@ -10,3 +10,6 @@ class Comment(models.Model):
 
     user = models.ForeignKey(user_model, on_delete=models.PROTECT)
     promotion = models.ForeignKey(Promotion, on_delete=models.PROTECT)
+
+    def __str__(self) -> str:
+        return self.title

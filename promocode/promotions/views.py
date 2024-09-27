@@ -1,19 +1,8 @@
 from django.shortcuts import render
-
-promotions = [
-    {
-        'title': 'Post Um',
-        'price': 29.99,
-        'url': 'https://google.com'
-    },
-    {
-        'title': 'Robo Aspirador Kabum Smart 900',
-        'price': 129.99,
-        'url': 'https://www.kabum.com.br/produto/366169/robo-aspirador-kabum-smart-900-127v-branco-ir360-controle-via-app-recipiente-dispensador-de-po-kbsf011'
-    },
-]
+from promotions.models.promotion import Promotion
 
 def promotions_list(request):
+    promotions = Promotion.objects.all()
     context  = {
         'promotions': promotions,
     }
@@ -22,7 +11,7 @@ def promotions_list(request):
 
 # PATH PARAM
 def promotion_detail(request, pk):
-    promotion = promotions[pk-1]
+    promotion = Promotion.objects.get(pk=pk)
     return render(request, 'promotions/detail.html', {
         'promotion': promotion
     })

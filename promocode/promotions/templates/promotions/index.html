@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+    <a href="#" class="btn btn-primary w-100">Cadastrar Promoção</a>
     <div class="row">
         {% for promotion in promotions %}
         <div class="col-12 mt-2">
@@ -13,7 +14,7 @@
                             {{promotion.price}} R$
                         </h1>
                     </p>
-                    <a href="#" class="card-link" target="_blank">Detalhes</a>
+                    <a href="{% url 'promotions:promotion_detail' promotion.pk %}" class="card-link">Detalhes</a>
                     <a href="{{promotion.url}}" class="card-link" target="_blank">Acessar Promoção</a>
                 </div>
             </div>

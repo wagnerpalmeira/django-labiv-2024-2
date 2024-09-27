@@ -3,6 +3,8 @@
 {% block content %}
     <main>
         <h1>{{ promotion.title }} </h1>
+        <h1>{{ promotion.description }} </h1>
         <p>{{ promotion.price }}</p>
+        <a href="{{promotion.url}}">Ir Para</a>
     </main>
 {% endblock %}
