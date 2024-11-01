@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect
 from promotions.models.promotion import Promotion
 from .forms import CreatePromotionForm
+from django.contrib import messages
+from django.views.generic import ListView
 
-def promotions_list(request):
-    promotions = Promotion.objects.all()
-    context  = {
-        'promotions': promotions,
-    }
-    return render(request, 'promotions/index.html', context)
+class PromotionListView(ListView):
+    model = Promotion
+    template_name = 'promotions/index.html'
+    context_object_name = 'promotions'
+
+
+# def promotions_list(request):
+#     promotions = Promotion.objects.all()
+#     context  = {
+#         'promotions': promotions,
+#     }
+#     return render(request, 'promotions/index.html', context)
 
 
 # PATH PARAM
@@ -24,8 +32,10 @@ def create_promotion(request):
             promotion = promotion_form.save(commit=False)
             promotion.user = request.user
             promotion.save()
+            messages.add_message(request, messages.SUCCESS, 'Promoção criada com sucesso!')
             return redirect('promotions:promotions_list')
-    promotion_form = CreatePromotionForm()
+    else:
+        promotion_form = CreatePromotionForm()
 
     return render(request, 'promotions/create.html', {
         'form': promotion_form

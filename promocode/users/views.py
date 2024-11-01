@@ -22,7 +22,7 @@ def criar_cliente(request):
 
 
 def login_cliente(request):
-    if request.user:
+    if request.user.is_authenticated:
         return redirect('promotions:promotions_list')
     if request.method == 'POST':
         username = request.POST.get('username')
